@@ -1,5 +1,646 @@
 {
-  "cases": [],
-  "scores": [],
+  "cases": [
+    {
+      "id": "001",
+      "title": "El Correo Misterioso",
+      "category": "Phishing",
+      "difficulty": "Fácil",
+      "tone": "cyan",
+      "duration": 180,
+      "description": "Un empleado del Banco de Neo-Pangea abrió un aviso urgente sobre su cuenta. Analiza la dirección del remitente, detecta hipervínculos trampa y desenmascara al atacante.",
+      "tags": [
+        "cabeceras_smtp",
+        "url_spoofing"
+      ],
+      "hints": [
+        "Compara el dominio después de la @ con el dominio oficial banco.neo.example.",
+        "El enlace lleva a otro dominio y las cabeceras muestran fallos SPF y DKIM. La urgencia intenta impedir que lo compruebes."
+      ],
+      "evidence": [
+        {
+          "id": "email",
+          "title": "Correo Sospechoso",
+          "kind": "mail",
+          "code": "EML_PAYLOAD #9431",
+          "type": "email",
+          "summary": "Un aviso urgente pide verificar credenciales bancarias.",
+          "sender": "Banco Central de Seguridad <support@bank-security.example>",
+          "recipient": "agente_marcos@empresa.example",
+          "subject": "Cuenta bloqueada · Verificación urgente de seguridad",
+          "content": "Estimado cliente: hemos detectado múltiples intentos de inicio de sesión fallidos. Su acceso bancario ha sido temporalmente restringido. Dispone de 15 minutos para verificar sus credenciales o su cuenta quedará bloqueada.",
+          "detail": "El banco utiliza banco.neo.example. El nombre visible no garantiza quién envió el mensaje.",
+          "connection": "attack"
+        },
+        {
+          "id": "headers",
+          "title": "Cabeceras del Mensaje",
+          "kind": "file",
+          "code": "AUTHENTICATION_RESULTS",
+          "type": "code",
+          "summary": "Resultados de autenticación del correo interceptado.",
+          "content": "Return-Path: <support@bank-security.example>\nReceived: from unknown (198.51.100.77)\nAuthentication-Results:\n  spf=fail\n  dkim=none\n  dmarc=fail\nOfficial-Domain: banco.neo.example",
+          "detail": "SPF falló y no hay una firma DKIM. Estos resultados, junto con el dominio ajeno al banco, apoyan la suplantación.",
+          "connection": "correlation"
+        },
+        {
+          "id": "url",
+          "title": "Enlace Señuelo (Redirect)",
+          "kind": "link",
+          "code": "URL_TRAP_TRACER",
+          "type": "code",
+          "summary": "La dirección del botón no corresponde al banco.",
+          "content": "Texto visible: VERIFICAR CUENTA AHORA\nDestino real: https://bank-security.example/login-phish?token=a8f9\nDominio oficial: banco.neo.example\nFormulario: usuario + contraseña + código de acceso",
+          "detail": "No ingreses credenciales en el dominio del mensaje. Accede al banco desde su dirección conocida.",
+          "connection": "attack"
+        },
+        {
+          "id": "profile",
+          "title": "Perfil del Remitente",
+          "kind": "user",
+          "code": "IDENTITY_SPOOF",
+          "type": "note",
+          "summary": "El directorio de la agencia permite contrastar la identidad.",
+          "content": "Banco de Neo-Pangea\nDominio oficial: banco.neo.example\nCanal de soporte verificado: ayuda@banco.neo.example\nLa agencia no solicita contraseñas completas mediante correo.",
+          "detail": "La identidad se comprueba comparando varias evidencias, no solo el logotipo o el tono profesional.",
+          "connection": "validated"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "title": "¿Cuál es la evidencia de suplantación más clara?",
+          "options": [
+            {
+              "id": "a",
+              "text": "El dominio del remitente no corresponde al dominio oficial del banco."
+            },
+            {
+              "id": "b",
+              "text": "El mensaje contiene el nombre del cliente."
+            },
+            {
+              "id": "c",
+              "text": "El correo utiliza un formato profesional."
+            },
+            {
+              "id": "d",
+              "text": "El asunto está escrito en español."
+            }
+          ],
+          "correct": "a"
+        },
+        {
+          "id": "q2",
+          "title": "¿Qué muestran las cabeceras de autenticación?",
+          "options": [
+            {
+              "id": "a",
+              "text": "SPF y DKIM validan al banco."
+            },
+            {
+              "id": "b",
+              "text": "SPF falla y no existe firma DKIM."
+            },
+            {
+              "id": "c",
+              "text": "El correo no contiene cabeceras."
+            },
+            {
+              "id": "d",
+              "text": "El remitente está verificado por usar HTTPS."
+            }
+          ],
+          "correct": "b"
+        },
+        {
+          "id": "q3",
+          "title": "¿Cuál es la conclusión forense y la acción adecuada?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Ingresar las credenciales para evitar el bloqueo."
+            },
+            {
+              "id": "b",
+              "text": "Reenviar el enlace a otros empleados."
+            },
+            {
+              "id": "c",
+              "text": "Reportar phishing y verificar la cuenta desde el canal oficial."
+            },
+            {
+              "id": "d",
+              "text": "Responder con la contraseña para confirmar la identidad."
+            }
+          ],
+          "correct": "c"
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "title": "El Archivo Oculto",
+      "category": "Malware",
+      "difficulty": "Media",
+      "tone": "lavender",
+      "duration": 150,
+      "description": "Se ha interceptado un documento aparentemente inofensivo en la alcaldía jurásica. Examina las extensiones camufladas, aísla el troyano y contrasta las firmas del archivo.",
+      "tags": [
+        "payload_binario",
+        "sha256_check"
+      ],
+      "hints": [
+        "La extensión relevante es la última: .exe. El icono de PDF no cambia el tipo real.",
+        "Compara el hash de la muestra con el indicador conocido. Analiza sin ejecutar el archivo."
+      ],
+      "evidence": [
+        {
+          "id": "file",
+          "title": "Factura.pdf.exe",
+          "kind": "file",
+          "code": "BINARIO_SOSPECHOSO",
+          "type": "code",
+          "summary": "Una doble extensión oculta un ejecutable.",
+          "content": "Nombre: Factura.pdf.exe\nTipo real: PE32 executable\nFirma: no verificada\nTamaño: 842 KB\nIcono visible: documento PDF",
+          "detail": "La extensión final .exe indica un ejecutable. El icono es un elemento visual que puede modificarse.",
+          "connection": "attack"
+        },
+        {
+          "id": "hash",
+          "title": "Hash de la Muestra",
+          "kind": "shield",
+          "code": "SHA256_CHECK",
+          "type": "code",
+          "summary": "La huella coincide con el indicador de la agencia.",
+          "content": "SHA-256 muestra:\n7f83b1657ff1fc53b92dc18148a1d65dfa13514b38f0c8c147f53941d5942014\nSHA-256 indicador conocido:\n7f83b1657ff1fc53b92dc18148a1d65dfa13514b38f0c8c147f53941d5942014\nClasificación: muestra de entrenamiento maliciosa",
+          "detail": "El hash coincide exactamente con la muestra clasificada por el laboratorio.",
+          "connection": "validated"
+        },
+        {
+          "id": "network",
+          "title": "Registro de Red",
+          "kind": "link",
+          "code": "SANDBOX_LOG",
+          "type": "code",
+          "summary": "La simulación detecta una conexión no autorizada.",
+          "content": "[SANDBOX AISLADO]\nProceso: Factura.pdf.exe\nDestino: 198.51.100.77:8080\nAcción: lectura de credenciales\nResultado: bloqueado por el laboratorio",
+          "detail": "El archivo intenta leer credenciales y comunicarse con un destino ajeno a la alcaldía.",
+          "connection": "attack"
+        },
+        {
+          "id": "protocol",
+          "title": "Protocolo de Cuarentena",
+          "kind": "book",
+          "code": "AGENCY_PROTOCOL",
+          "type": "note",
+          "summary": "Procedimiento para contener el incidente.",
+          "content": "1. No ejecutar el adjunto.\n2. Aislar la muestra y conservar su hash.\n3. Reportar el incidente al laboratorio.\n4. Revisar el equipo afectado.",
+          "detail": "Conservar la evidencia y aislarla permite investigar sin propagar la amenaza.",
+          "connection": "correlation"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "title": "¿Qué revela el nombre Factura.pdf.exe?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Es un PDF verificado."
+            },
+            {
+              "id": "b",
+              "text": "La última extensión indica un ejecutable camuflado."
+            },
+            {
+              "id": "c",
+              "text": "Es una imagen sin riesgos."
+            },
+            {
+              "id": "d",
+              "text": "La doble extensión demuestra autenticidad."
+            }
+          ],
+          "correct": "b"
+        },
+        {
+          "id": "q2",
+          "title": "¿Qué aporta comparar los hashes?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Cambia el contenido del archivo."
+            },
+            {
+              "id": "b",
+              "text": "Ejecuta el archivo de forma automática."
+            },
+            {
+              "id": "c",
+              "text": "Confirma que la muestra coincide con el indicador conocido."
+            },
+            {
+              "id": "d",
+              "text": "Elimina las conexiones de red."
+            }
+          ],
+          "correct": "c"
+        },
+        {
+          "id": "q3",
+          "title": "¿Cómo debes manejar el adjunto?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Aislarlo, conservar la evidencia y reportar el incidente."
+            },
+            {
+              "id": "b",
+              "text": "Abrirlo para comprobar si parece una factura."
+            },
+            {
+              "id": "c",
+              "text": "Cambiarle el nombre y ejecutarlo."
+            },
+            {
+              "id": "d",
+              "text": "Compartirlo con todo el equipo."
+            }
+          ],
+          "correct": "a"
+        }
+      ]
+    },
+    {
+      "id": "003",
+      "title": "La Contraseña Perdida",
+      "category": "Encriptación",
+      "difficulty": "Difícil",
+      "tone": "yellow",
+      "duration": 120,
+      "description": "Infiltración en los servidores centrales del metro de Neo-Pangea. Contrasta registros de acceso, analiza una contraseña expuesta y protege las credenciales comprometidas.",
+      "tags": [
+        "credential_check",
+        "entropy_analysis"
+      ],
+      "hints": [
+        "El registro combina muchos intentos fallidos con un acceso exitoso desde el mismo origen desconocido.",
+        "Una contraseña revelada no vuelve a ser segura al codificarla. Revoca las sesiones y establece una nueva."
+      ],
+      "evidence": [
+        {
+          "id": "access",
+          "title": "Bitácora de Accesos",
+          "kind": "file",
+          "code": "AUTH_LOG",
+          "type": "code",
+          "summary": "Intentos repetidos contra una misma cuenta.",
+          "content": "02:14:01 LOGIN FAIL usuario=operador origen=203.0.113.42\n02:14:02 LOGIN FAIL usuario=operador origen=203.0.113.42\n02:14:03 LOGIN FAIL usuario=operador origen=203.0.113.42\n02:15:00 LOGIN SUCCESS usuario=operador origen=203.0.113.42\nOrigen desconocido para el operador.",
+          "detail": "Muchos fallos seguidos de un éxito desde el mismo origen sugieren adivinación de credenciales.",
+          "connection": "attack"
+        },
+        {
+          "id": "password",
+          "title": "Credencial Expuesta",
+          "kind": "shield",
+          "code": "CREDENTIAL_DUMP",
+          "type": "code",
+          "summary": "La contraseña de entrenamiento aparece en un archivo público.",
+          "content": "Usuario: operador\nContraseña expuesta: Dino123\nMFA: desactivado\nContraseña reutilizada: sí",
+          "detail": "La clave es predecible, está expuesta y se reutiliza. Debe cambiarse en todos los servicios afectados.",
+          "connection": "attack"
+        },
+        {
+          "id": "encoding",
+          "title": "Nota de Codificación",
+          "kind": "file",
+          "code": "BASE64_NOTE",
+          "type": "note",
+          "summary": "El atacante guardó una copia codificada.",
+          "content": "RGlubzEyMw== (copia con espacios)\nBase64 representa datos y puede revertirse.\nNo equivale a cifrar una contraseña ni a almacenarla con un hash seguro.",
+          "detail": "Codificar no protege una contraseña expuesta. La protección requiere cambiar la clave y gestionar correctamente el acceso.",
+          "connection": "correlation"
+        },
+        {
+          "id": "recovery",
+          "title": "Plan de Recuperación",
+          "kind": "book",
+          "code": "RECOVERY_PLAN",
+          "type": "note",
+          "summary": "Medidas de contención y recuperación.",
+          "content": "Revocar sesiones activas.\nCambiar la contraseña por una larga y única.\nActivar MFA.\nRevisar otros servicios con la misma clave.\nConservar registros del incidente.",
+          "detail": "Estas medidas reducen el acceso del atacante y la posibilidad de reutilización de credenciales.",
+          "connection": "validated"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "title": "¿Qué patrón sugiere la bitácora?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Una actualización del sistema."
+            },
+            {
+              "id": "b",
+              "text": "Un inicio de sesión habitual sin anomalías."
+            },
+            {
+              "id": "c",
+              "text": "Intentos de adivinar la contraseña que terminan en un acceso exitoso."
+            },
+            {
+              "id": "d",
+              "text": "Una copia de seguridad programada."
+            }
+          ],
+          "correct": "c"
+        },
+        {
+          "id": "q2",
+          "title": "¿Base64 protege la contraseña expuesta?",
+          "options": [
+            {
+              "id": "a",
+              "text": "No. Es una codificación reversible."
+            },
+            {
+              "id": "b",
+              "text": "Sí. Es un hash irreversible."
+            },
+            {
+              "id": "c",
+              "text": "Sí. Activa MFA automáticamente."
+            },
+            {
+              "id": "d",
+              "text": "Sí. Revoca todas las sesiones."
+            }
+          ],
+          "correct": "a"
+        },
+        {
+          "id": "q3",
+          "title": "¿Qué acción contiene el incidente?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Reutilizar la contraseña con una mayúscula."
+            },
+            {
+              "id": "b",
+              "text": "Revocar sesiones, cambiar la clave y activar MFA."
+            },
+            {
+              "id": "c",
+              "text": "Publicar la clave codificada."
+            },
+            {
+              "id": "d",
+              "text": "Ignorar el acceso porque fue exitoso."
+            }
+          ],
+          "correct": "b"
+        }
+      ]
+    }
+  ],
+  "scores": [
+    {
+      "id": "demo-1",
+      "player": "REXSHADOW_09",
+      "score": 14890,
+      "solvedCases": 32,
+      "accuracy": 99.2,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-2",
+      "player": "CypherVelociraptor",
+      "score": 12450,
+      "solvedCases": 28,
+      "accuracy": 97.4,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-3",
+      "player": "T-Byte_Squishy",
+      "score": 11200,
+      "solvedCases": 25,
+      "accuracy": 95.8,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-4",
+      "player": "PixelTriCera",
+      "score": 9850,
+      "solvedCases": 22,
+      "accuracy": 94,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-5",
+      "player": "MegaBronto_SEC",
+      "score": 9120,
+      "solvedCases": 20,
+      "accuracy": 91,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-6",
+      "player": "GlitchRaptor",
+      "score": 8740,
+      "solvedCases": 19,
+      "accuracy": 89,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-7",
+      "player": "NeoStego",
+      "score": 4200,
+      "solvedCases": 10,
+      "accuracy": 83.5,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-8",
+      "player": "AnkyloShield",
+      "score": 3950,
+      "solvedCases": 9,
+      "accuracy": 81,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "demo-9",
+      "player": "SpinoHack",
+      "score": 3400,
+      "solvedCases": 8,
+      "accuracy": 79.4,
+      "caseId": "001",
+      "status": "won",
+      "errors": 0,
+      "hints": 0,
+      "time": 134,
+      "difficulty": "Fácil",
+      "season": "01",
+      "date": "2026-09-01T12:00:00Z",
+      "demo": true
+    },
+    {
+      "id": "bff5438a-3746-4604-8b39-29b88aa60ed2",
+      "player": "Agente Marcos",
+      "caseId": "001",
+      "title": "El Correo Misterioso",
+      "score": 900,
+      "solvedCases": 1,
+      "accuracy": 100,
+      "errors": 0,
+      "hints": 0,
+      "time": 11,
+      "status": "won",
+      "difficulty": "Fácil",
+      "date": "2026-09-21T20:16:32.724Z",
+      "season": "01",
+      "rank": "Rastreador de Huellas",
+      "demo": false
+    },
+    {
+      "id": "6c0dcb7d-2c60-4058-8913-841ae7e13dde",
+      "player": "Agente Marcos",
+      "caseId": "001",
+      "title": "El Correo Misterioso",
+      "score": 100,
+      "solvedCases": 0,
+      "accuracy": 33.3,
+      "errors": 2,
+      "hints": 0,
+      "time": 10,
+      "status": "lost",
+      "difficulty": "Fácil",
+      "date": "2026-09-21T20:17:44.224Z",
+      "season": "01",
+      "rank": "Novato Forense",
+      "demo": false
+    },
+    {
+      "id": "995bff9b-a164-48e8-96de-1c8c535d8cf3",
+      "player": "Agente Marcos",
+      "caseId": "001",
+      "title": "El Correo Misterioso",
+      "score": 900,
+      "solvedCases": 1,
+      "accuracy": 100,
+      "errors": 0,
+      "hints": 0,
+      "time": 12,
+      "status": "won",
+      "difficulty": "Fácil",
+      "date": "2026-09-21T20:18:23.702Z",
+      "season": "01",
+      "rank": "Rastreador de Huellas",
+      "demo": false
+    },
+    {
+      "id": "1c82af6a-5384-4114-ab0a-c96eb16fb1f2",
+      "player": "Agente Marcos",
+      "caseId": "001",
+      "title": "El Correo Misterioso",
+      "score": 900,
+      "solvedCases": 1,
+      "accuracy": 100,
+      "errors": 0,
+      "hints": 0,
+      "time": 14,
+      "status": "won",
+      "difficulty": "Fácil",
+      "date": "2026-09-21T20:31:59.255Z",
+      "season": "01",
+      "rank": "Rastreador de Huellas",
+      "demo": false
+    },
+    {
+      "id": "82aafb5e-e3b0-439c-a224-136f25ccbd69",
+      "player": "Agente Marcos",
+      "caseId": "001",
+      "title": "El Correo Misterioso",
+      "score": 900,
+      "solvedCases": 1,
+      "accuracy": 100,
+      "errors": 0,
+      "hints": 0,
+      "time": 11,
+      "status": "won",
+      "difficulty": "Fácil",
+      "date": "2026-09-21T20:34:18.522Z",
+      "season": "01",
+      "rank": "Rastreador de Huellas",
+      "demo": false
+    }
+  ],
   "players": []
 }

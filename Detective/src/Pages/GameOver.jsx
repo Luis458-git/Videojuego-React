@@ -1,4 +1,22 @@
-// Pendiente de implementar en el bloque correspondiente.
+﻿import { Link, useNavigate } from 'react-router-dom'
+import useGame from '../Hooks/useGame'
+import { getRank } from '../Services/gameRules'
+import Icon from '../Components/Icon'
+import rain from '../assets/images/rex-rain.png'
+import office from '../assets/images/dino-office.png'
+import '../Styles/gameOver.css'
 export default function GameOver() {
-  return null
+  const { game, startGame, saving, retrySave } = useGame()
+  const navigate = useNavigate()
+  const finished = game && game.status !== 'playing'
+  const won = game?.status === 'won'
+  function retry() { startGame(game.caseData, true); navigate(`/case/${game.caseId}`) }
+  return <main id="contenido" className={`result-page ${won ? 'victory' : ''}`}><div className="container">
+    <div className="result-strip"><span>{finished ? won ? '● SISTEMA RESTABLECIDO // CASO RESUELTO' : '● CRITICAL SYSTEM BREACH // INVESTIGACIÓN FALLIDA' : '● AGENCIA CENTRAL // INFORME DE MISIÓN'}</span><span>REGISTRO // NEO-PANGEA</span></div>
+    <div className="gameover-grid"><figure className="rain-scene"><img src={won ? office : rain} alt={won ? 'Rex ha resuelto el caso desde su escritorio.' : 'Rex bajo la lluvia de neón en Neo-Pangea.'} /><span className="camera-label">● CAM-07 // CALLEJÓN NEO-PANGEA</span><figcaption><span className="eyebrow">REGISTRO DEL DETECTIVE REX</span><p>{won ? '“¡Bien hecho, colega! La paciencia y las evidencias nos llevaron a la verdad.”' : '“¡Oh no, colega! A veces una pista se nos escapa. Revisa el expediente, ponte la gabardina y vuelve a intentarlo.”'}</p><small>// BITÁCORA SQUISH-LOG FINAL</small></figcaption></figure>
+      <section className="result-details surface-card"><span className={`tag ${won ? 'green' : 'pink'}`}>{finished ? won ? 'ESTADO: CASO RESUELTO // AMENAZA NEUTRALIZADA' : 'ESTADO: CASO NO RESUELTO // EXPEDIENTE CONGELADO' : 'SIN INFORME DE RESULTADO'}</span><h1>{finished ? won ? 'CASO RESUELTO' : 'GAME OVER' : 'TU PRÓXIMA MISIÓN'}</h1><h2>{finished ? won ? 'Investigación completada' : 'Investigación fallida' : 'El misterio te espera'}</h2><p className="result-intro">{finished ? game.caseData.title : 'Selecciona un expediente para comenzar a investigar con Dino Rex.'}</p>
+      {finished ? <><div className="failure-reason"><Icon name={won ? 'shield' : 'warning'} size={32} /><div><small>{won ? 'VEREDICTO DE LA AGENCIA' : 'RAZÓN DEL FALLO OPERATIVO'}</small><p>{won ? 'Todas las deducciones fueron verificadas. La amenaza ha sido neutralizada.' : game.reason}</p></div></div><small>TELEMETRÍA DEL CASO // RESUMEN DEL INTENTO</small><div className="result-metrics"><div><small>TIEMPO USADO</small><strong>{Math.round((game.endedAt - game.startedAt) / 1000)} s</strong></div><div><small>PUNTOS</small><strong className="yellow">{game.score} PTS</strong></div><div><small>EVIDENCIAS</small><strong className="cyan">{game.inspected.length}/{game.caseData.evidence.length}</strong></div><div><small>ERRORES</small><strong>{game.errors}/2</strong></div></div><div className="lesson"><Icon name="bulb" /><div><strong className="cyan">LECCIÓN DE LA AGENCIA</strong><p>Contrasta las evidencias antes de emitir una conclusión. Las pistas de Rex pueden ayudarte a encontrar lo que pasaste por alto.</p><small>RANGO DE LA PARTIDA: {getRank(game.score)}</small></div></div><div className="save-status" role="status">{saving.status === 'saved' ? '✓ Resultado guardado en la agencia.' : saving.status === 'error' ? saving.error : 'Guardando el resultado…'}{saving.status === 'error' && <button className="button secondary" onClick={retrySave}>Reintentar guardado</button>}{saving.webhook && <><p>{saving.webhook}</p><button className="button secondary" onClick={retrySave}>Reintentar envío a n8n</button></>}</div></> : game?.status === 'playing' && <p>Tu investigación del caso #{game.caseId} sigue activa.</p>}
+      <div className="result-actions">{finished ? <button className="button primary" onClick={retry}><Icon name="retry" /> Reintentar investigación</button> : <Link className="button primary" to={game ? `/case/${game.caseId}` : '/cases'}>{game ? 'Continuar investigación' : 'Elegir expediente'}</Link>}<Link className="button secondary" to="/cases"><Icon name="folder" /> Expedientes</Link><Link className="button secondary" to={won ? '/leaderboard' : '/instructions'}><Icon name={won ? 'trophy' : 'book'} />{won ? 'Ranking' : 'Manual'}</Link></div>
+      </section></div><p className="result-bottom">MEMORIA DEL CASO CONSERVADA // EL SIGUIENTE INTENTO COMIENZA CON NUEVAS EVIDENCIAS</p>
+  </div></main>
 }

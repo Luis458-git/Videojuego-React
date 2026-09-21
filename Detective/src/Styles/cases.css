@@ -1,1 +1,4 @@
-/* Pendiente de implementar siguiendo el diseno de Stitch. */
+﻿.case-controls { display: grid; grid-template-columns: 1fr 1fr 200px; gap: 24px; margin: 32px 0; }
+.case-controls label { display: grid; gap: 10px; font-size: 10px; letter-spacing: 1px; }
+.case-notice { margin-top: 36px; }.case-notice h2 { font-size: 24px; }.case-notice p { color: #cfc2d6; font-size: 12px; }
+@media (max-width: 800px) { .case-controls { grid-template-columns: 1fr; gap: 16px; } }

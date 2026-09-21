@@ -1,0 +1,247 @@
+{
+  "name": "Dino Detective - Procesar Resultado",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dino-detective-result",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "4c8b8a5c-43a6-4e8b-95c0-52bd8ee02d11",
+      "name": "Dino Detective Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        260,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const source = $json.body ?? $json;\n\nconst result = {\n  player: String(source.player ?? 'Detective Novato').slice(0, 30),\n  score: Number(source.score) || 0,\n  solvedCases: Number(source.solvedCases) || 0,\n  accuracy: Number(source.accuracy) || 0,\n  caseId: String(source.caseId ?? ''),\n  status: source.status === 'won' ? 'won' : 'lost',\n  errors: Number(source.errors) || 0,\n  hints: Number(source.hints) || 0,\n  time: Number(source.time) || 0,\n  difficulty: String(source.difficulty ?? ''),\n  season: String(source.season ?? '01'),\n  date: String(source.date ?? new Date().toISOString()),\n};\n\nreturn [{ json: result }];"
+      },
+      "id": "a1e95d61-5e9a-44b2-94d0-70a5538391ac",
+      "name": "Validar y organizar resultado",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e8f1bf3a-e2bb-4c09-9e82-faa05b6bd0c5",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "won",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "90cfdaa1-72fa-4d81-9e94-60c12f717c93",
+      "name": "Partida ganada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        740,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3a67ba67-d20c-4d37-9329-29876114163d",
+              "name": "message",
+              "value": "={{ `Caso ${$json.caseId} resuelto por ${$json.player} con ${$json.score} puntos.` }}",
+              "type": "string"
+            },
+            {
+              "id": "4bf64ad3-22b8-49c6-83a6-cf78028f7081",
+              "name": "processed",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "c0431113-03a8-4b19-8909-8990dfa5f46c",
+              "name": "status",
+              "value": "won",
+              "type": "string"
+            },
+            {
+              "id": "8a5c326c-ebc4-4dc0-9c32-3259e11f0455",
+              "name": "outcome",
+              "value": "victory",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ee31d949-da7a-4085-979e-0a6ba1cc7d39",
+      "name": "Preparar respuesta victoria",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        980,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { message: $json.message, processed: $json.processed, status: $json.status, outcome: $json.outcome } }}",
+        "options": {}
+      },
+      "id": "b615c411-57cf-4e97-b0d1-4ab3b05aa7e0",
+      "name": "Responder victoria",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1220,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "64159c9d-51fc-467e-9f5a-a70e902c4252",
+              "name": "message",
+              "value": "={{ `Caso ${$json.caseId} no resuelto. ${$json.player} registró ${$json.errors} errores; revisa las evidencias e intentalo de nuevo.` }}",
+              "type": "string"
+            },
+            {
+              "id": "06b4cf4a-e20c-4f4c-952c-cc83d99b3e41",
+              "name": "processed",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "e65ce6bf-0e4c-4bc8-8264-f8387c17ef23",
+              "name": "status",
+              "value": "lost",
+              "type": "string"
+            },
+            {
+              "id": "5dbb7f53-251a-4d15-8246-3398e4d353fc",
+              "name": "outcome",
+              "value": "defeat",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4e1ef5d3-fbc0-417a-9c42-7a2e8bfce6c3",
+      "name": "Preparar respuesta derrota",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        980,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { message: $json.message, processed: $json.processed, status: $json.status, outcome: $json.outcome } }}",
+        "options": {}
+      },
+      "id": "d2f02e09-f4d6-4fb3-bc86-06df92449064",
+      "name": "Responder derrota",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1220,
+        420
+      ]
+    }
+  ],
+  "connections": {
+    "Dino Detective Webhook": {
+      "main": [
+        [
+          {
+            "node": "Validar y organizar resultado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar y organizar resultado": {
+      "main": [
+        [
+          {
+            "node": "Partida ganada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Partida ganada": {
+      "main": [
+        [
+          {
+            "node": "Preparar respuesta victoria",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Preparar respuesta derrota",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar respuesta victoria": {
+      "main": [
+        [
+          {
+            "node": "Responder victoria",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar respuesta derrota": {
+      "main": [
+        [
+          {
+            "node": "Responder derrota",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

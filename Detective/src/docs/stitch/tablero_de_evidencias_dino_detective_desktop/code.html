@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-high": "#252a36", "surface-container-lowest": "#090e19", "on-primary-fixed": "#2c0051", "primary-fixed-dim": "#ddb7ff", "inverse-primary": "#842bd2", "surface-container-highest": "#2f3541", "surface-container": "#1a202b", "secondary-fixed": "#a2eeff", "tertiary": "#efc200", "on-background": "#dee2f3", "tertiary-container": "#cea700", "secondary": "#5de6ff", "secondary-container": "#00cbe6", "on-primary-fixed-variant": "#6900b3", "primary-container": "#b76dff", "on-secondary-container": "#00515d", "tertiary-fixed": "#ffe083", "surface-dim": "#0e131f", "on-error": "#690005", "background": "#0e131f", "on-tertiary-container": "#4e3e00", "surface-variant": "#2f3541", "on-surface": "#dee2f3", "outline": "#988d9f", "on-surface-variant": "#cfc2d6", "surface-bright": "#343946", "secondary-fixed-dim": "#2fd9f4", "on-tertiary-fixed-variant": "#574500", "inverse-on-surface": "#2b303d", "outline-variant": "#4d4354", "surface-container-low": "#161c27", "tertiary-fixed-dim": "#eec200", "on-error-container": "#ffdad6", "on-tertiary": "#3c2f00", "on-tertiary-fixed": "#231b00", "on-secondary-fixed": "#001f25", "inverse-surface": "#dee2f3", "error-container": "#93000a", "surface": "#0e131f", "on-primary": "#490080", "surface-tint": "#ddb7ff", "on-primary-container": "#400071", "primary": "#ddb7ff", "primary-fixed": "#f0dbff", "error": "#ffb4ab", "on-secondary": "#00363e", "on-secondary-fixed-variant": "#004e5a" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-2xs": "0.25rem", "space-md": "1.25rem", "space-lg": "1.75rem", "space-2xl": "3.5rem", "margin-desktop": "2.5rem", "margin-tablet": "1.5rem", "gutter-desktop": "1.75rem", "gutter": "1.25rem", "space-xs": "0.5rem", "space-sm": "0.75rem", "margin": "1rem", "space-xl": "2.5rem" }, "fontFamily": { "body-lg": [ "Space Mono" ], "headline-xl-mobile": [ "Bricolage Grotesque" ], "body-sm": [ "Space Mono" ], "display-lg": [ "Bricolage Grotesque" ], "body-md": [ "Space Mono" ], "label-md": [ "Space Mono" ], "display-lg-mobile": [ "Bricolage Grotesque" ], "headline-lg": [ "Bricolage Grotesque" ], "headline-xl": [ "Bricolage Grotesque" ], "headline-md": [ "Bricolage Grotesque" ], "label-code": [ "Space Mono" ], "label-lg": [ "Space Mono" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "36px", "fontWeight": "700" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ], "display-lg": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-md": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" } ], "display-lg-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "800" } ], "headline-lg": [ "30px", { "lineHeight": "38px", "fontWeight": "600" } ], "headline-xl": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-md": [ "22px", { "lineHeight": "28px", "fontWeight": "600" } ], "label-code": [ "10px", { "lineHeight": "12px", "letterSpacing": "0.15em", "fontWeight": "400" } ], "label-lg": [ "13px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen selection:bg-secondary selection:text-on-secondary"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.6)]"><div class="h-20 w-full px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Cyber noir detective badge with a cute minimalist blue plush dinosaur silhouette wearing a tiny fedora hat and carrying a glowing magnifying glass, neon cyan #22D3EE border, colorful pompom dots (green, blue, purple, red, yellow) at the top, high-tech emblem for 'DINO DETECTIVE' video game.. Design context: - Primary color: #a855f7
+- Font: bricolageGrotesque
+- Mode: dark
+- Roundness: rounded-full
+. The logo should be visually consistent with these brand tokens." class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WmMRJ3UkjuWvLgXhi3jSC-8hwvsGWSC9XgWXs7MikpkdT1P0p5ICFZ4Zf0PFln7ety_YqbVT1TQu5DU8mOOeMEJG0w-R9phvILc61NsfVrm40m9DoEXOodRLjm1xpknzrzhXjTj8RR1p_6qx32-SFbIKAKeHhyFmU7mZtEx0EhsM4kwkeyBYOh1R2XePVFIv_T5Xik5C_cYKGPd7AAgclU37KqMxXZs8bB2vn5dbo2BPST7sXLxA63Dmc"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md tracking-tight text-on-surface uppercase">DINO DETECTIVE</span><div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="w-2 h-2 rounded-full bg-primary"></span><span class="w-2 h-2 rounded-full bg-error"></span><span class="w-2 h-2 rounded-full bg-tertiary"></span></div></div><span class="font-label-code text-label-code text-secondary tracking-widest">SMALL DINO. BIG MYSTERIES.</span></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-surface-container-high text-secondary font-bold shadow-[0_0_12px_rgba(93,230,255,0.2)]"><a class="font-label-lg text-label-lg uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="inicio" href="#">INICIO</a><a class="font-label-lg text-label-lg uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="estacion-de-trabajo" href="#">ESTACIÓN DE TRABAJO</a><a class="font-label-lg text-label-lg uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="expedientes" href="#">EXPEDIENTES</a><a class="font-label-lg text-label-lg uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="tablero-de-evidencias" href="#">TABLERO DE EVIDENCIAS</a><a class="font-label-lg text-label-lg uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="top-detectives" href="#">TOP DETECTIVES</a><a class="font-label-lg text-label-lg uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="manual-de-instrucciones" href="#">MANUAL DE INSTRUCCIONES</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-low"><div class="w-2 h-2 rounded-full bg-secondary animate-ping"></div><span class="font-label-code text-label-code text-on-surface">DETECTIVE REX // NIVEL 07</span></div><button class="px-space-md py-space-xs rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg tracking-wider uppercase transition-transform active:scale-95 shadow-[0_0_20px_rgba(183,109,255,0.4)] hover:brightness-110">NUEVO CASO</button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_12px_rgba(221,183,255,0.3)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<!-- Case Control HUD Bar -->
+<section class="w-full px-margin-desktop py-space-sm bg-surface-container-lowest">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<!-- Title & Case Selector -->
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-code text-label-code text-secondary">MODO: ANÁLISIS TOPOLÓGICO</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-md text-headline-md text-on-surface uppercase tracking-tight">CASO #001: EL CORREO MISTERIOSO</h1>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high font-label-code text-label-code text-primary">RED CUÁNTICA</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">MAPA FORENSE DE CONEXIONES // DEDUCCIÓN MULTI-VECTOR</span>
+</div>
+</div>
+<!-- Tactical Metrics Bar -->
+<div class="flex items-center gap-space-sm flex-wrap w-full lg:w-auto justify-start lg:justify-end">
+<!-- Metric 1 -->
+<div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-secondary text-[18px]">hub</span>
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-outline uppercase">PISTAS CONECTADAS</span>
+<span class="font-headline-md text-[16px] leading-[20px] text-on-surface">4 <span class="text-outline">/ 6</span></span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded-lg bg-surface-container">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-outline uppercase">AMENAZA ESTIMADA</span>
+<span class="font-headline-md text-[16px] leading-[20px] text-primary">PHISHING (89%)</span>
+</div>
+</div>
+<!-- Metric 3: Critical Risk -->
+<div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded-lg bg-error-container text-on-error-container shadow-[0_0_16px_rgba(147,0,10,0.5)]">
+<span class="material-symbols-outlined text-[18px] animate-ping">warning</span>
+<div class="flex flex-col">
+<span class="font-label-code text-label-code uppercase tracking-wider font-bold">NIVEL RIESGO</span>
+<span class="font-label-lg text-label-lg font-bold">CRÍTICO // L3</span>
+</div>
+</div>
+<!-- Metric 4: Countdown -->
+<div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded-lg bg-surface-container-high">
+<span class="material-symbols-outlined text-tertiary text-[18px]">timer</span>
+<div class="flex flex-col">
+<span class="font-label-code text-label-code text-outline uppercase">EXPIRACIÓN TOKEN</span>
+<span class="font-label-lg text-label-lg text-tertiary font-bold tracking-widest" id="countdown-timer">01:45</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Investigation Workspace: Corkboard Canvas + Inspector Panel -->
+<section class="w-full px-margin-desktop py-space-md grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- Interactive Corkboard Frame (Cols 1-8) -->
+<div class="xl:col-span-8 flex flex-col gap-space-sm">
+<!-- Corkboard Surface with Cyber Noir Atmosphere -->
+<div class="relative w-full rounded-xl bg-surface-container-lowest overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.7)] select-none min-h-[660px]">
+<!-- Photorealistic Corkboard Canvas Texture Base -->
+<div class="absolute inset-0 opacity-40 bg-cover bg-center mix-blend-luminosity scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCq2E1DgQDSFbrI8yVMf-pUqh6FbOsKuQTBTN0pP3eHKHpys9HdlMss0YIJkej2L5MjmsbjgAC18doV4o8mAmGSOw7VIc-74ftGzdpsyclYDCBlbYDe1XiM96IWGBO1W3RD3kfPkHuO6h8UDXYkWiIwQJw8CdV_aSV8xVSsKYwC2QN26ecbuhfZg9JS6EDH6dOfT-ODP0VmcpcPIlAKgIyxWEJAbUsZd45ZpXUC-SVkivCQW-w49zn7')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/70 to-surface-container-lowest/30"></div>
+<!-- CRT Subtle Scanline Layer -->
+<div class="absolute inset-0 pointer-events-none bg-[radial-gradient(#22d3ee_0.75px,transparent_0.75px)] [background-size:24px_24px] opacity-15"></div>
+<!-- Board HUD Header Ribbon -->
+<div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+<div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-md pointer-events-auto">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="font-label-code text-label-code text-secondary">TABLERO TÁCTIL // MATRIZ HOLOGRÁFICA CORK-01</span>
+</div>
+<div class="flex items-center gap-space-xs pointer-events-auto">
+<button class="px-space-xs py-1 rounded-md bg-surface-container/90 text-on-surface hover:text-secondary text-label-code font-label-code transition-all backdrop-blur-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">zoom_in</span> ZOOM
+            </button>
+<button class="px-space-xs py-1 rounded-md bg-surface-container/90 text-on-surface hover:text-secondary text-label-code font-label-code transition-all backdrop-blur-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">center_focus_strong</span> RECENTRAR
+            </button>
+</div>
+</div>
+<!-- SVG Neon Yarn Connections Canvas -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" id="evidence-yarn-canvas" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Glowing filters for yarn cords -->
+<filter height="140%" id="glow-cyan" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="3.5"></fegaussianblur>
+<femerge>
+<femergenode in="blur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+<filter height="140%" id="glow-red" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="4"></fegaussianblur>
+<femerge>
+<femergenode in="blur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Yarn: Central Node -> Node A (Domain SPF) [Cyan correlation] -->
+<line filter="url(#glow-cyan)" opacity="0.95" stroke="#5de6ff" stroke-dasharray="8 4" stroke-width="2.5" x1="50%" x2="22%" y1="46%" y2="22%"></line>
+<!-- Yarn: Central Node -> Node B (Phish Link) [Red Alert Vector] -->
+<line filter="url(#glow-red)" opacity="0.9" stroke="#ffb4ab" stroke-width="3" x1="50%" x2="78%" y1="46%" y2="24%"></line>
+<!-- Yarn: Node B (Phish Link) -> Node D (C2 Server) [Red Attack Vector] -->
+<line filter="url(#glow-red)" opacity="0.8" stroke="#ffb4ab" stroke-dasharray="4 4" stroke-width="2" x1="78%" x2="80%" y1="24%" y2="72%"></line>
+<!-- Yarn: Central Node -> Node C (Malicious Bin) [Cyan correlation] -->
+<line filter="url(#glow-cyan)" opacity="0.95" stroke="#5de6ff" stroke-width="2.5" x1="50%" x2="24%" y1="46%" y2="74%"></line>
+<!-- Yarn: Central Node -> Node E (Locked Crypto Port) [Faint Pulsing Yarn] -->
+<line opacity="0.6" stroke="#ddb7ff" stroke-dasharray="3 6" stroke-width="2" x1="50%" x2="52%" y1="46%" y2="82%"></line>
+</svg>
+<!-- Pinned Evidence Items Over Corkboard -->
+<div class="relative w-full h-[660px] p-6">
+<!-- 1. NODO CENTRAL: Correo Sospechoso (#EML-9431) -->
+<div class="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 z-30 group cursor-pointer" onclick="inspectNode('central')">
+<!-- Push Pin -->
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-40 w-6 h-6 rounded-full bg-tertiary shadow-[0_4px_12px_rgba(239,194,0,0.8)] flex items-center justify-center">
+<div class="w-2.5 h-2.5 rounded-full bg-white opacity-80"></div>
+</div>
+<!-- Polaroid Clue Card -->
+<div class="w-64 p-3 rounded-lg bg-surface-container-high shadow-[0_16px_32px_rgba(0,0,0,0.8)] transform transition-transform duration-200 group-hover:scale-105 group-hover:-rotate-1">
+<div class="w-full h-24 rounded bg-surface-container-lowest overflow-hidden flex flex-col p-2.5 justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[9px] text-tertiary">EMAIL RAW DUMP</span>
+<span class="material-symbols-outlined text-tertiary text-[14px]">mail</span>
+</div>
+<div class="font-label-code text-[11px] text-on-surface leading-tight font-bold">
+                  Asunto: URGENTE: Bloqueo de Cuenta Bancaria #882
+                </div>
+<div class="font-label-code text-[9px] text-outline truncate">De: alerta@seguridad-verificada.com</div>
+</div>
+<div class="mt-2.5 flex items-center justify-between">
+<span class="font-label-code text-label-code text-secondary font-bold">#EML-9431 [RAÍZ]</span>
+<span class="px-1.5 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-label-code text-[9px]">4 CONEXIONES</span>
+</div>
+</div>
+</div>
+<!-- 2. NODO A: Dominio Falso: @bank-security.net (Index Card) -->
+<div class="absolute left-[8%] top-[12%] z-20 group cursor-pointer" onclick="inspectNode('nodo-a')">
+<!-- Plush Badge Pin (Blue stitch) -->
+<div class="absolute -top-3 left-4 z-40 w-5 h-5 rounded-full bg-secondary shadow-[0_0_12px_rgba(93,230,255,0.7)] flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary text-[12px]">push_pin</span>
+</div>
+<!-- Striped Index Card -->
+<div class="w-56 p-3.5 rounded-lg bg-surface-container shadow-xl transform -rotate-3 transition-transform duration-200 group-hover:rotate-0 group-hover:scale-105">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-code text-[10px] text-outline">INDEX CARD // FORENSICS</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="font-headline-md text-[14px] leading-tight text-on-surface font-bold mt-1">@bank-security.net</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1.5 leading-snug">
+                "¡No coincide con el SPF oficial del banco! Registro MX apunta a servidor anónimo en Isla Caimán."
+              </p>
+<div class="mt-2 flex items-center gap-1">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high font-label-code text-[9px] text-secondary">DNS SPOOF</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high font-label-code text-[9px] text-emerald-400">FLAGGED</span>
+</div>
+</div>
+</div>
+<!-- 3. NODO B: Enlace Señuelo: login-phish?token=a8f9 (Sticky Holográfico) -->
+<div class="absolute right-[8%] top-[14%] z-20 group cursor-pointer" onclick="inspectNode('nodo-b')">
+<!-- Push Pin Pink -->
+<div class="absolute -top-3 right-4 z-40 w-5 h-5 rounded-full bg-error shadow-[0_0_12px_rgba(255,180,171,0.8)] flex items-center justify-center">
+<span class="material-symbols-outlined text-on-error text-[12px]">pest_control</span>
+</div>
+<!-- Fluorescent Sticky Note -->
+<div class="w-52 p-3.5 rounded-md bg-surface-container-high shadow-2xl transform rotate-2 transition-transform duration-200 group-hover:rotate-0 group-hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[9px] text-error font-bold tracking-wider uppercase">STICKY TRAMPA</span>
+<span class="material-symbols-outlined text-error text-[14px]">link_off</span>
+</div>
+<div class="font-label-code text-[11px] text-error mt-2 font-bold break-all">
+                login-phish?token=a8f9
+              </div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1.5">
+                Redirección ofuscada. Captura credenciales mediante formulario clonado.
+              </p>
+<span class="mt-2 inline-block px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-code text-[9px]">VECTOR CRÍTICO</span>
+</div>
+</div>
+<!-- 4. NODO C: Binario Oculto Factura.pdf.exe -->
+<div class="absolute left-[10%] bottom-[12%] z-20 group cursor-pointer" onclick="inspectNode('nodo-c')">
+<!-- Pin Red -->
+<div class="absolute -top-3 left-6 z-40 w-5 h-5 rounded-full bg-primary-container shadow-[0_0_12px_rgba(183,109,255,0.7)] flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-[12px]">attachment</span>
+</div>
+<!-- Card File Note -->
+<div class="w-60 p-3.5 rounded-lg bg-surface-container shadow-xl transform rotate-1 transition-transform duration-200 group-hover:rotate-0 group-hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[9px] text-primary font-bold">PAYLOAD DETECTADO</span>
+<span class="material-symbols-outlined text-primary text-[16px]">bug_report</span>
+</div>
+<div class="font-headline-md text-[13px] leading-tight text-on-surface font-bold mt-1.5">Factura.pdf.exe</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1">
+                Doble extensión ejecutable camuflada con icono falso de Adobe Acrobat.
+              </p>
+<div class="mt-2 font-label-code text-[9px] text-outline truncate bg-surface-container-lowest p-1 rounded">
+                SHA256: 7f83b165...e2014
+              </div>
+</div>
+</div>
+<!-- 5. NODO D: Servidor C2 / Nodo IP 198.51.100.77 -->
+<div class="absolute right-[10%] bottom-[14%] z-20 group cursor-pointer" onclick="inspectNode('nodo-d')">
+<!-- Pin Green -->
+<div class="absolute -top-3 right-6 z-40 w-5 h-5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.7)] flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-container-lowest text-[12px]">public</span>
+</div>
+<!-- Suspect C2 Dossier snippet -->
+<div class="w-56 p-3 rounded-lg bg-surface-container-high shadow-2xl transform -rotate-2 transition-transform duration-200 group-hover:rotate-0 group-hover:scale-105">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[9px] text-secondary font-bold">C2 COMMAND NODE</span>
+<span class="px-1 py-0.2 rounded bg-surface-container font-label-code text-[9px] text-outline">PORT 8080</span>
+</div>
+<div class="mt-2 flex items-center gap-2">
+<div class="w-10 h-10 rounded bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[20px]">person_pin</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-code text-[11px] text-on-surface font-bold">198.51.100.77</span>
+<span class="font-label-code text-[9px] text-outline">ALIAS: "DR. MAL-BYTE"</span>
+</div>
+</div>
+<p class="font-body-sm text-[10px] text-on-surface-variant mt-2">
+                Receptor de tokens robados ubicado en rack no registrado.
+              </p>
+</div>
+</div>
+<!-- 6. NODO E: Bloqueado / En Descifrado (Puerto Criptográfico #443) -->
+<div class="absolute left-[48%] bottom-[4%] -translate-x-1/2 z-20 group cursor-pointer" onclick="inspectNode('nodo-e')">
+<div class="px-space-md py-space-xs rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-xl flex items-center gap-space-xs transform transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-primary text-[18px] animate-spin">sync</span>
+<div class="flex flex-col">
+<span class="font-label-code text-[9px] text-primary font-bold tracking-wider">NODO E // DESCIFRANDO</span>
+<span class="font-label-code text-[11px] text-on-surface">Puerto TLS #443 [Clave Parcial 62%]</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">lock</span>
+</div>
+</div>
+</div>
+<!-- Corkboard Lower Sticky Legend -->
+<div class="absolute bottom-3 left-4 z-20 flex items-center gap-space-xs pointer-events-none">
+<div class="flex items-center gap-2 px-space-sm py-1 rounded bg-surface-container-lowest/80 backdrop-blur-sm pointer-events-auto">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-secondary"></span>
+<span class="font-label-code text-[10px] text-secondary">HILO CORRELACIÓN</span>
+</div>
+<div class="flex items-center gap-1.5 ml-2">
+<span class="w-3 h-0.5 bg-error"></span>
+<span class="font-label-code text-[10px] text-error">VECTOR ATAQUE</span>
+</div>
+<div class="flex items-center gap-1.5 ml-2">
+<span class="w-3 h-0.5 bg-primary"></span>
+<span class="font-label-code text-[10px] text-primary">ENCRIPTADO</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Canvas Controls Under Board -->
+<div class="flex items-center justify-between px-space-xs flex-wrap gap-2">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-code text-label-code text-outline">HERRAMIENTA ACTIVA:</span>
+<button class="px-space-xs py-1 rounded bg-surface-container-high text-secondary font-label-code text-label-code font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timeline</span> TRAZADOR DE HILOS
+          </button>
+<button class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-code text-label-code flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">search</span> LUPA FORENSE
+          </button>
+<button class="px-space-xs py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-code text-label-code flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">note_add</span> ANOTACIÓN
+          </button>
+</div>
+<span class="font-label-code text-label-code text-outline">CONEXIÓN CUÁNTICA: SQUISH-09 ESTABLE</span>
+</div>
+</div>
+<!-- Right Detective Sidecar Inspector (Cols 9-12) -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Dino Detective Companion Speech Card -->
+<div class="p-space-md rounded-xl bg-surface-container shadow-xl flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center gap-space-sm">
+<!-- Dino Plush Avatar with Fedora -->
+<div class="relative w-16 h-16 rounded-full overflow-hidden shrink-0 bg-surface-container-lowest shadow-md">
+<img alt="Detective Rex Plush Sleuth" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida/AEtjO1WMML8WHIYTA_-z_Fxr2tbwnxPTeKoA5-FwHMkbbfDDznHqkqYtbkFvEB0Y7iPQfngsTXPeHplbv6Ki_BXqE9ztDnCPQRPda6jsFBx5Wk-AdjoB0lh79I4sTmIoPxajV3egrpfcpTESVXB-dLXcr_-Te2GHMKbmjoFqXtFy6qAjHT7zhLq5kht09pr2noHxIG2mQLEbpehWCJwuPvIsk_e-YITHc9JnZQWVbsZVqT3T_6Tf3La5ykHQ_og"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-400"></div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-md text-[18px] text-on-surface uppercase">DETECTIVE REX</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-code text-[9px] font-bold">NIVEL 07</span>
+</div>
+<span class="font-label-code text-label-code text-secondary">ESPECIALISTA EN CIBER-DELITOS BLANDOS</span>
+</div>
+</div>
+<!-- Speech Bubble in Noir Monospace -->
+<div class="p-space-sm rounded-lg bg-surface-container-high relative">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed" id="dino-dialogue">
+            "¡Mira cómo se conectan los hilos! El correo falso apunta directamente al enlace señuelo. Si confirmamos el hash del archivo <span class="text-primary font-bold">.exe</span> cerraremos el caso sin caer en la trampa."
+          </p>
+<div class="mt-2 flex items-center justify-between text-outline">
+<span class="font-label-code text-[10px]">CONFIANZA DEDUCTIVA: 89%</span>
+<span class="font-label-code text-[10px]">AUDIO: TRANSMITIENDO...</span>
+</div>
+</div>
+<!-- Action Triggers inside Inspector -->
+<div class="grid grid-cols-1 gap-space-xs mt-1">
+<button class="w-full py-space-xs px-space-sm rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg uppercase tracking-wider font-bold transition-transform active:scale-95 shadow-md flex items-center justify-center gap-space-xs hover:brightness-110">
+<span class="material-symbols-outlined text-[18px]">polyline</span>
+            TRAZAR NUEVA CONEXIÓN DE PISTA
+          </button>
+<button class="w-full py-space-xs px-space-sm rounded-full bg-surface-container-high text-secondary hover:bg-surface-bright font-label-lg text-label-lg uppercase tracking-wider font-bold transition-transform active:scale-95 flex items-center justify-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">key</span>
+            DESENCRIPTAR METADATOS (-50 PTS)
+          </button>
+</div>
+</div>
+<!-- Thread Filter Matrix -->
+<div class="p-space-md rounded-xl bg-surface-container shadow-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface uppercase">FILTROS DE HILOS</span>
+<span class="font-label-code text-label-code text-secondary">3 ACTIVOS</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<!-- Filter 1 -->
+<label class="flex items-center justify-between p-space-xs rounded bg-surface-container-high cursor-pointer hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md text-on-surface">Hilos de Correlación</span>
+</div>
+<input checked="" class="accent-secondary w-4 h-4 cursor-pointer" type="checkbox"/>
+</label>
+<!-- Filter 2 -->
+<label class="flex items-center justify-between p-space-xs rounded bg-surface-container-high cursor-pointer hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="font-body-md text-body-md text-on-surface">Vectores de Ataque (Rojo)</span>
+</div>
+<input checked="" class="accent-error w-4 h-4 cursor-pointer" type="checkbox"/>
+</label>
+<!-- Filter 3 -->
+<label class="flex items-center justify-between p-space-xs rounded bg-surface-container-high cursor-pointer hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+<span class="font-body-md text-body-md text-on-surface">Pistas Validadas (Verde)</span>
+</div>
+<input checked="" class="accent-emerald-400 w-4 h-4 cursor-pointer" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Inspector Node Details Target Panel (Changes interactively) -->
+<div class="p-space-md rounded-xl bg-surface-container shadow-md flex flex-col gap-space-xs" id="inspector-node-card">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-label-code text-outline uppercase">NODO INSPECCIONADO</span>
+<span class="font-label-code text-label-code text-secondary font-bold">#EML-9431</span>
+</div>
+<h4 class="font-headline-md text-[18px] text-on-surface">Correo Sospechoso</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Contiene cabeceras MIME alteradas con campos falsificados. La firma DKIM está ausente y el botón dirige hacia el dominio señuelo.
+        </p>
+<div class="pt-2 flex items-center justify-between">
+<span class="font-label-code text-label-code text-tertiary">ESTADO: COMPROBADO</span>
+<span class="font-label-code text-label-code text-outline">AUTOR: DINO REX</span>
+</div>
+</div>
+<!-- Primary Grand Call to Action -->
+<button class="w-full py-space-md px-space-lg rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg tracking-wider uppercase font-bold transition-all shadow-[0_0_28px_rgba(93,230,255,0.4)] hover:brightness-110 active:scale-95 flex items-center justify-center gap-space-xs">
+<span>EMITIR DEDUCCIÓN FINAL EN ESTACIÓN DE TRABAJO</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Lower Forensic Log Ribbon (Bitácora Forense con Línea de Tiempo) -->
+<section class="w-full px-margin-desktop py-space-md bg-surface-container-lowest">
+<div class="flex flex-col gap-space-sm">
+<!-- Section Header with Pompom Accent Dots -->
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface uppercase">BITÁCORA FORENSE // TIMELINE DE EVIDENCIAS</span>
+<div class="flex items-center gap-1.5 px-space-xs py-0.5 rounded-full bg-surface-container">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+</div>
+<span class="font-label-code text-label-code text-outline">5 ENTRADAS VERIFICADAS EN BLOQUE CUÁNTICO</span>
+</div>
+<!-- Timeline Scroll Track -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-sm">
+<!-- Timeline Item 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[10px] text-emerald-400 font-bold">10:14:02 UTC</span>
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+</div>
+<div class="mt-2 font-headline-md text-[13px] text-on-surface">Recepción Phish</div>
+<p class="font-body-sm text-[11px] text-outline mt-0.5">Captura inicial del correo en bandeja de simulación.</p>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-code text-[9px] text-secondary">INGESTA OK</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[10px] text-secondary font-bold">10:18:45 UTC</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="mt-2 font-headline-md text-[13px] text-on-surface">Extracción SPF</div>
+<p class="font-body-sm text-[11px] text-outline mt-0.5">Discrepancia validada en encabezados DNS.</p>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-code text-[9px] text-secondary">FALLO SPF</span>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[10px] text-primary font-bold">10:24:12 UTC</span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<div class="mt-2 font-headline-md text-[13px] text-on-surface">Decodificación URL</div>
+<p class="font-body-sm text-[11px] text-outline mt-0.5">Token a8f9 mapeado al endpoint falso de recolección.</p>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-code text-[9px] text-primary">PHISH LINK</span>
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[10px] text-error font-bold">10:31:00 UTC</span>
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+</div>
+<div class="mt-2 font-headline-md text-[13px] text-error">Detección Binaria</div>
+<p class="font-body-sm text-[11px] text-outline mt-0.5">Adjunto ejecutable bloqueado por Dino-Sandbox.</p>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="font-label-code text-[9px] text-error">MALWARE CRÍTICO</span>
+</div>
+</div>
+<!-- Timeline Item 5 -->
+<div class="p-space-sm rounded-lg bg-surface-container-high flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-[10px] text-tertiary font-bold">ACTUALIDAD</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+<div class="mt-2 font-headline-md text-[13px] text-tertiary">Fase Deductiva</div>
+<p class="font-body-sm text-[11px] text-outline mt-0.5">Cruzando registros de tráfico C2 con nodo Mal-Byte.</p>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="font-label-code text-[9px] text-tertiary">EN PROCESO</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Logic for Inspecting Corkboard Clues and Countdown -->
+<script>
+    // Countdown Timer logic
+    let remainingSeconds = 105; // 01:45
+    const timerElement = document.getElementById('countdown-timer');
+    if (timerElement) {
+      setInterval(() => {
+        if (remainingSeconds > 0) {
+          remainingSeconds--;
+          const mins = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
+          const secs = String(remainingSeconds % 60).padStart(2, '0');
+          timerElement.textContent = `${mins}:${secs}`;
+        }
+      }, 1000);
+    }
+
+    // Interactive Clue Node Inspection Handler
+    const clueData = {
+      'central': {
+        code: '#EML-9431',
+        title: 'Correo Sospechoso (Email Raíz)',
+        desc: 'Cabeceras MIME alteradas con campos falsificados. La firma DKIM está ausente y el hipervínculo dirige hacia el formulario señuelo.',
+        status: 'COMPROBADO // ORIGEN',
+        speech: '"¡El punto de partida de todo el misterio! Alguien envió esto fingiendo ser el banco central de Dino City."'
+      },
+      'nodo-a': {
+        code: '#DOM-0082',
+        title: 'Dominio Falso: @bank-security.net',
+        desc: 'Servidor MX ubicado fuera del rango ASN del banco. Tasa de confianza DNS 0.04. Registro de whois creado hace 48 horas.',
+        status: 'IMPOSTOR CONFIRMADO',
+        speech: '"¡Mira el dominio! Dice @bank-security pero el registro DNS no tiene la firma oficial. ¡Es un truco clásico!"'
+      },
+      'nodo-b': {
+        code: '#URL-3391',
+        title: 'Enlace Señuelo (login-phish)',
+        desc: 'Dirección web con token URL que intenta cosechar contraseñas y códigos 2FA. Apunta directamente a un host C2.',
+        status: 'ALTA PELIGROSIDAD',
+        speech: '"¡Cuidado con el dedito! Si pulsamos ese enlace señuelo, Dr. Mal-Byte podría interceptar nuestras galletas de dinosaurio."'
+      },
+      'nodo-c': {
+        code: '#BIN-8812',
+        title: 'Factura.pdf.exe',
+        desc: 'Doble extensión ejecutable que evade filtros estándar de Windows. Contiene un payload troyano de acceso remoto.',
+        status: 'MALWARE TROYANO',
+        speech: '"¡Ese archivo parece un PDF inofensivo, pero en realidad es un ejecutable disfrazado! Típico disfraz de villano."'
+      },
+      'nodo-d': {
+        code: '#C2-9102',
+        title: 'Servidor C2 (198.51.100.77)',
+        desc: 'Dirección IP asociada a incidentes previos del grupo Mal-Byte. Escucha activa en el puerto 8080.',
+        status: 'OBJETIVO LOCALIZADO',
+        speech: '"¡Aja! Toda la información capturada vuela en paquetes directos a esa dirección IP. ¡Casi lo tenemos acorralado!"'
+      },
+      'nodo-e': {
+        code: '#TLS-0443',
+        title: 'Puerto Criptográfico #443',
+        desc: 'Canal de comunicación cifrada. Requiere 50 puntos de telemetría adicionales para extraer los metadatos completos.',
+        status: 'ENCRIPTADO // PENDIENTE',
+        speech: '"El canal está fuertemente bloqueado. Podemos usar 50 puntos para desencriptar el último fragmento de la verdad."'
+      }
+    };
+
+    window.inspectNode = function(nodeKey) {
+      const data = clueData[nodeKey];
+      if (!data) return;
+
+      const inspectorCard = document.getElementById('inspector-node-card');
+      const dinoDialogue = document.getElementById('dino-dialogue');
+
+      if (inspectorCard) {
+        inspectorCard.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-label-code text-label-code text-outline uppercase">NODO INSPECCIONADO</span>
+            <span class="font-label-code text-label-code text-secondary font-bold">${data.code}</span>
+          </div>
+          <h4 class="font-headline-md text-[18px] text-on-surface">${data.title}</h4>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">${data.desc}</p>
+          <div class="pt-2 flex items-center justify-between">
+            <span class="font-label-code text-label-code text-primary font-bold">${data.status}</span>
+            <span class="font-label-code text-label-code text-outline">AUTOR: DINO REX</span>
+          </div>
+        `;
+      }
+
+      if (dinoDialogue) {
+        dinoDialogue.innerHTML = data.speech;
+      }
+    };
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest text-on-surface-variant py-space-xl"><div class="w-full px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex flex-col items-center md:items-start gap-space-2xs"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-code text-label-code uppercase text-secondary tracking-widest">TERMINAL ACTIVO // ENCRIPTACIÓN CUÁNTICA CON POLÍMEROS BLANDOS</span></div><p class="font-body-sm text-body-sm text-outline">© 2024 DINO DETECTIVE STUDIOS. TODOS LOS DERECHOS RESERVADOS // POLÍMERO TÁCTIL SEGURO.</p></div><div class="flex items-center gap-space-sm"><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container text-secondary uppercase">TELEMETRÍA: V.4.09.2</span><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container text-primary uppercase">NODO CLAVE: SQUISH-09</span><span class="font-label-code text-label-code px-space-xs py-0.5 rounded bg-surface-container text-tertiary uppercase">ESTADO: ÓPTIMO</span></div></div></footer>
+</body></html>

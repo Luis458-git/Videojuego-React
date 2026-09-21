@@ -1,1 +1,19 @@
-/* Pendiente de implementar siguiendo el diseno de Stitch. */
+﻿/* Navegación compartida: misma jerarquía que el diseño de Stitch. */
+.site-header { position: sticky; top: 0; z-index: 20; background: #090e19f5; backdrop-filter: blur(16px); box-shadow: 0 4px 24px #0005; }
+.nav-shell { max-width: 1720px; min-height: 88px; margin: auto; padding: 12px 2.5%; display: flex; align-items: center; gap: 18px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--color-text); text-decoration: none; flex-shrink: 0; }
+.brand img { width: 44px; height: 44px; object-fit: contain; }
+.brand strong { display: block; font: 800 23px/1.04 var(--font-display); letter-spacing: -.8px; }
+.brand small { display: block; color: #5de6ff; font-size: 8px; margin-top: 5px; max-width: 150px; line-height: 1.4; }
+.pompoms { display: inline-flex; gap: 5px; align-items: center; flex-shrink: 0; }
+.pompoms i { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 6px currentColor; }
+.pompoms i:nth-child(2) { background: #38bdf8; }.pompoms i:nth-child(3) { background: #b76dff; }.pompoms i:nth-child(4) { background: #ff8888; }.pompoms i:nth-child(5) { background: #facc15; }
+.main-nav { display: flex; align-items: stretch; gap: 3px; margin-left: auto; }
+.main-nav a { display: flex; align-items: center; padding: 12px 10px; text-decoration: none; text-transform: uppercase; font-size: 10px; font-weight: 700; line-height: 1.5; color: #cfc2d6; border-radius: 18px; max-width: 128px; }
+.main-nav a:hover, .main-nav a.active { background: #252a36; color: #5de6ff; box-shadow: 0 0 12px #5de6ff14; }
+.nav-player { display: flex; align-items: center; gap: 8px; background: #161c27; border-radius: 999px; padding: 10px 16px; font-size: 8px; line-height: 1.4; max-width: 160px; overflow-wrap: anywhere; }
+.nav-player svg { flex-shrink: 0; color: #ddb7ff; }.nav-player b { font-weight: 400; }
+.new-case { min-width: 100px; max-width: 135px; text-align: center; }.menu-toggle { display: none !important; }
+@media (max-width: 1350px) { .nav-player { display: none; }.nav-shell { gap: 12px; }.nav-shell > .pompoms { display: none; } }
+@media (max-width: 1100px) { .nav-shell { flex-wrap: wrap; }.menu-toggle { display: inline-flex !important; margin-left: auto; }.main-nav { display: none; order: 4; width: 100%; margin: 0; flex-wrap: wrap; }.main-nav.is-open { display: flex; }.main-nav a { max-width: none; }.new-case { display: none !important; } }
+@media (max-width: 420px) { .brand strong { font-size: 19px; }.brand img { width: 36px; height: 36px; }.nav-shell { padding-inline: 16px; }.brand small { font-size: 7px; } }
